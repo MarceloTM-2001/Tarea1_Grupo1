@@ -1,0 +1,3 @@
+/Users/marcelotruquemontero/CLionProjects/Tarea1-Grupo1/cmake-build-debug/CMakeFiles/Tarea1_Grupo1.dir
+/Users/marcelotruquemontero/CLionProjects/Tarea1-Grupo1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/marcelotruquemontero/CLionProjects/Tarea1-Grupo1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
