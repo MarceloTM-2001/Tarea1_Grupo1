@@ -9,6 +9,11 @@
 double divi_t(double x){
     double Xk0;//Es el termino anterior, este es el que se va acumulando y en la formula se expresaa como X(k)
     double eps=2.2204e-16;
+    int sign=1;
+    if(x<0){
+        x*=-1;
+        sign*=-1;
+    }
 
     if(9.332622e+157<x){ //El numero equivalente tendrá un resultado equivalente en máquina a 0
         return 0;
@@ -32,6 +37,24 @@ double divi_t(double x){
         }
         Xk0=Xk1;//Actualiza el valor anterior para calcular el próximo
     }
-    return Xk1;//Valor que cumple con la tolerancia o que llegó al máximo de iteracionesC
+    return Xk1*sign;//Valor que cumple con la tolerancia o que llegó al máximo de iteracionesC
+}
+
+
+double ln_t(double x){
+    if(x<=0){
+        return -1;
+    }
+    double constant=(x-1)*divi_t(x+1);
+    double X0=2*constant;
+    double Xk=0;
+    for(int n=1;n<maxiter;n++){
+        Xk=X0+(2*constant* divi_t((2*n)+1)*pow(constant,2*n));
+        if(abs(Xk-X0)<tol){
+            break;
+        }
+        X0=Xk;
+    }
+    return Xk;
 }
 

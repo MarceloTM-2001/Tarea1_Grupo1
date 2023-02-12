@@ -14,6 +14,8 @@ const double tol=10e-8;
 
 double divi_t(double x);
 
+double ln_t(double x);
+
 
 
 #endif //TAREA1_GRUPO1_FUNCTIONS_H

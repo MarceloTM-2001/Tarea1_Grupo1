@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Functions.h"
 int main() {
-    cout<<divi_t(48)<<endl;
+    cout<<ln_t(1)<<endl;
     return 0;
 }
