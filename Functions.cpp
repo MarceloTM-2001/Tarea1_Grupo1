@@ -42,19 +42,28 @@ double divi_t(double x){
 
 
 double ln_t(double x){
-    if(x<=0){
+    if(x<=0){//En caso de que la entrada del logaritmo sea negativa debe dar error (en este caso res -1)
         return -1;
     }
-    double constant=(x-1)*divi_t(x+1);
-    double X0=2*constant;
-    double Xk=0;
+    double number=(x-1)*divi_t(x+1);//Para simplificar código se guarda el cálculo que se repite
+    double X0=2*number;//Pirmera iteración
+    double Xk=0;//Variable que guardará futuras iteraciones
     for(int n=1;n<maxiter;n++){
-        Xk=X0+(2*constant* divi_t((2*n)+1)*pow(constant,2*n));
+        Xk=X0+(2*number* divi_t((2*n)+1)*pow(number,2*n));//Sumatoria
         if(abs(Xk-X0)<tol){
             break;
         }
-        X0=Xk;
+        X0=Xk;//No cumple tolerancia se actualiza la iteración anterior para el próximo cálculo
     }
     return Xk;
 }
 
+double log_t(double x,double y) {
+    if (x <= 0 or y < 0 or (x==1 and y==1)) {//Casos donde el logaritmo se indefine
+        return -1;
+    } else if (y == 0) {//Caso especial base 0 da siempre 0
+        return 0;
+    }else{//Caso regular
+        return ln_t(x)* divi_t(ln_t(y));
+    }
+}

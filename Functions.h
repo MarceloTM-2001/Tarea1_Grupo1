@@ -16,6 +16,7 @@ double divi_t(double x);
 
 double ln_t(double x);
 
+double log_t(double x,double y);
 
 
 #endif //TAREA1_GRUPO1_FUNCTIONS_H
