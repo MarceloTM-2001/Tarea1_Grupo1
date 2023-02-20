@@ -4,13 +4,19 @@
 
 #include "Functions.h"
 
-
+bool errorflag=false;
 
 double divi_t(double x){
     double Xk0;//Es el termino anterior, este es el que se va acumulando y en la formula se expresaa como X(k)
     double eps=2.2204e-16;
     int sign=1;
-    if(x<0){
+
+    if(x==0){
+        errorflag= true;
+        cout<<"Dvisión por 0"<<endl;
+        return 0;
+    }
+    else if(x<0){
         x*=-1;
         sign*=-1;
     }
@@ -43,6 +49,8 @@ double divi_t(double x){
 
 double ln_t(double x){
     if(x<=0){//En caso de que la entrada del logaritmo sea negativa debe dar error (en este caso res -1)
+        errorflag= true;
+        cout<<"Logaritmo Indefinido"<<endl;
         return -1;
     }
     double number=(x-1)*divi_t(x+1);//Para simplificar código se guarda el cálculo que se repite
@@ -60,6 +68,8 @@ double ln_t(double x){
 
 double log_t(double x,double y) {
     if (x <= 0 or y < 0 or (x==1 and y==1)) {//Casos donde el logaritmo se indefine
+        errorflag= true;
+        cout<<"Logaritmo indefinido"<<endl;
         return -1;
     } else if (y == 0) {//Caso especial base 0 da siempre 0
         return 0;
@@ -90,4 +100,14 @@ double sin_t(double x){
     }
     return Sk;//Devuelvo iteración de mayor precisión
 
+}
+
+double csc_t(double x){
+    if(fmod(x,pi)==0){//Caso de error cuando sen se hace 0 se indefine el csc
+        errorflag= true;
+        cout<<"División por 0"<<endl;
+        return 0;
+    }else{
+        return divi_t(sin_t(x));//se devuelve el sen(x)^-1
+    }
 }
