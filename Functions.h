@@ -18,5 +18,9 @@ double ln_t(double x);
 
 double log_t(double x,double y);
 
+long long factorial(int x);
+
+double sin_t(double x);
+
 
 #endif //TAREA1_GRUPO1_FUNCTIONS_H

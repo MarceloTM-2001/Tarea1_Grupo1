@@ -46,7 +46,7 @@ double ln_t(double x){
         return -1;
     }
     double number=(x-1)*divi_t(x+1);//Para simplificar código se guarda el cálculo que se repite
-    double X0=2*number;//Pirmera iteración
+    double X0=2*number;//Primera iteración
     double Xk=0;//Variable que guardará futuras iteraciones
     for(int n=1;n<maxiter;n++){
         Xk=X0+(2*number* divi_t((2*n)+1)*pow(number,2*n));//Sumatoria
@@ -66,4 +66,28 @@ double log_t(double x,double y) {
     }else{//Caso regular
         return ln_t(x)* divi_t(ln_t(y));
     }
+}
+
+long long factorial(int x){
+    long long answer=1;//Resultado
+    for(x;x>1;x--){
+        answer*=x;
+    }
+    return answer;
+}
+
+
+double sin_t(double x){
+    double S0=x;//La primera iteración equivale al número dado en sí
+    double Sk=0;
+    for(int n=1;n<maxiter;n++){
+        long something =tgamma((2*n)+2);//Guardo el factorial por aparte por cuestiones de control a la hora de hacer pruebas
+        Sk=S0+(pow(-1,n)*pow(x,(2*n)+1)* divi_t(something));//Siguiente Iteración
+        if(abs(Sk-S0)<tol){//Cumple con la tolerancia
+            break;
+        }
+        S0=Sk;//Guardo el valor y continúo iterando
+    }
+    return Sk;//Devuelvo iteración de mayor precisión
+
 }
