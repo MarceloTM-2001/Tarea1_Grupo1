@@ -50,11 +50,11 @@ int main() {
         << cos_t(c) << endl;
 
 
-    float c = pi_t/4 ;
+    float d = pi_t/4 ;
     cout << "Secante: " << d << " = "
         << setprecision(
             numeric_limits<cpp_dec_float_50>::digits10)
-        << sec_t(c) << endl;
+        << sec_t(d) << endl;
 
     int e = 80;
     cout << "Arctan: " << e << " en radianes = "
