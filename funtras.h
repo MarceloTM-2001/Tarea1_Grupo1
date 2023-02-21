@@ -37,6 +37,10 @@ cpp_dec_float_50 sec_t(cpp_dec_float_50 x);
 
 cpp_dec_float_50 cos_t(cpp_dec_float_50 x);
 
+cpp_dec_float_50 csc_t(cpp_dec_float_50 x);
+
+cpp_dec_float_50 sin_t(cpp_dec_float_50 x);
+
 cpp_dec_float_50 power_t(cpp_dec_float_50 x, cpp_dec_float_50 y);
 
 #endif //TAREA1_GRUPO1_FUNCTIONS_H
