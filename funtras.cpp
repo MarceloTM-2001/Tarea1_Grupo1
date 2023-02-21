@@ -4,6 +4,7 @@
 //
 
 #include "funtras.h"
+bool errorflag=false;
 
 cpp_dec_float_50 divi_t(cpp_dec_float_50 x)
 {
@@ -175,6 +176,36 @@ cpp_dec_float_50 sinh_t(cpp_dec_float_50 x)
         s0 = sk;
     }
     return sk;
+}
+
+/*
+Documentacion pendiente
+*/
+cpp_dec_float_50 sin_t(cpp_dec_float_50 x){
+    cpp_dec_float_50 s0=x;//La primera iteración equivale al número dado en sí
+    cpp_dec_float_50 sk=0;
+    for(int n=1;n<iterMax;n++){
+        sk=s0+(pow(-1,n)*pow(x,(2*n)+1)* divi_t(factorial_t((2*n)+2)));//Siguiente Iteración
+        if(abs(sk-s0)<tol){//Cumple con la tolerancia
+            break;
+        }
+        s0=sk;//Guardo el valor y continúo iterando
+    }
+    return sk;//Devuelvo iteración de mayor precisión
+
+}
+
+/*
+Documentacion pendiente
+*/
+cpp_dec_float_50 csc_t(cpp_dec_float_50 x){
+    if(fmod(x,pi_t)==0){//Caso de error cuando sen se hace 0 se indefine el csc
+        errorflag= true;
+        cout<<"División por 0"<<endl;
+        return 0;
+    }else{
+        return divi_t(sin_t(x));//se devuelve el sen(x)^-1
+    }
 }
 
 /*
