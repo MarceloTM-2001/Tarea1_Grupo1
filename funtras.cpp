@@ -5,10 +5,10 @@
 
 #include "funtras.h"
 
-double divi_t(double x)
+cpp_dec_float_50 divi_t(cpp_dec_float_50 x)
 {
-    double Xk0; // Es el termino anterior, este es el que se va acumulando y en la formula se expresaa como X(k)
-    double eps = 2.2204e-16;
+    cpp_dec_float_50 Xk0; // Es el termino anterior, este es el que se va acumulando y en la formula se expresaa como X(k)
+    cpp_dec_float_50 eps = 2.2204e-16;
     int sign = 1;
     if (x < 0)
     {
@@ -41,7 +41,7 @@ double divi_t(double x)
         Xk0 = pow(eps, 2);
     }
 
-    double Xk1 = 0; // Se inicializa el valor en 0 por cuestiones de seguridad
+    cpp_dec_float_50 Xk1 = 0; // Se inicializa el valor en 0 por cuestiones de seguridad
     for (int k = 0; k < iterMax; k++)
     {                                // Loop con máximo de iteraciones de 2500
         Xk1 = Xk0 * (2 - (x * Xk0)); // Se calcula la siguiente iteración (La cual ocupa la anterior) en la fórmula este equivaldría al X(k+1)
@@ -54,15 +54,15 @@ double divi_t(double x)
     return Xk1 * sign; // Valor que cumple con la tolerancia o que llegó al máximo de iteracionesC
 }
 
-double ln_t(double x)
+cpp_dec_float_50 ln_t(cpp_dec_float_50 x)
 {
     if (x <= 0)
     { // En caso de que la entrada del logaritmo sea negativa debe dar error (en este caso res -1)
         return -1;
     }
-    double number = (x - 1) * divi_t(x + 1); // Para simplificar código se guarda el cálculo que se repite
-    double X0 = 2 * number;                  // Pirmera iteración
-    double Xk = 0;                           // Variable que guardará futuras iteraciones
+    cpp_dec_float_50 number = (x - 1) * divi_t(x + 1); // Para simplificar código se guarda el cálculo que se repite
+    cpp_dec_float_50 X0 = 2 * number;                  // Pirmera iteración
+    cpp_dec_float_50 Xk = 0;                           // Variable que guardará futuras iteraciones
     for (int n = 1; n < iterMax; n++)
     {
         Xk = X0 + (2 * number * divi_t((2 * n) + 1) * pow(number, 2 * n)); // Sumatoria
@@ -75,7 +75,7 @@ double ln_t(double x)
     return Xk;
 }
 
-double log_t(double x, double y)
+cpp_dec_float_50 log_t(cpp_dec_float_50 x, cpp_dec_float_50 y)
 {
     if (x <= 0 or y < 0 or (x == 1 and y == 1))
     { // Casos donde el logaritmo se indefine
@@ -91,7 +91,7 @@ double log_t(double x, double y)
     }
 }
 
-double factorial_t(double x)
+cpp_dec_float_50 factorial_t(cpp_dec_float_50 x)
 {
     if (x == 0 or x == 1)
     {
@@ -107,15 +107,15 @@ double factorial_t(double x)
 /*
 Documentacion pendiente
 */
-double exp_t(double x)
+cpp_dec_float_50 exp_t(cpp_dec_float_50 x)
 {
     if (x = 0)
     {
         return 0;
     }
 
-    double s0 = 0;
-    double sk;
+    cpp_dec_float_50 s0 = 0;
+    cpp_dec_float_50 sk;
 
     for (int n = 1; n < iterMax; n++)
     {
@@ -124,6 +124,7 @@ double exp_t(double x)
         {
             break;
         }
+        sk = s0;
     }
     return sk;
 }
@@ -131,10 +132,38 @@ double exp_t(double x)
 /*
 Documentacion pendiente
 */
-double sinh_t(double x)
+cpp_dec_float_50 cos_t(cpp_dec_float_50 x)
 {
-    double s0 = x;
-    double sk;
+    cpp_dec_float_50 s0 = 1;
+    cpp_dec_float_50 sk;
+
+    for (int n = 1; n < iterMax; n++)
+    {
+        sk = s0 + pow(-1, n) * pow(x, 2*n ) * divi_t(factorial_t(2*n));
+        if (abs(sk - s0) < tol)
+        {
+            break;
+        }
+        sk = s0;
+    }
+    return sk;
+}
+
+/*
+Documentacion pendiente
+*/
+cpp_dec_float_50 sec_t(cpp_dec_float_50 x)
+{
+    return 1 * divi_t(cos_t(x));
+}
+
+/* 
+Documentacion pendiente
+*/
+cpp_dec_float_50 sinh_t(cpp_dec_float_50 x)
+{
+    cpp_dec_float_50 s0 = x;
+    cpp_dec_float_50 sk;
 
     for (int n = 0; n < iterMax; n++)
     {
@@ -143,14 +172,23 @@ double sinh_t(double x)
         {
             break;
         }
+        s0 = sk;
     }
     return sk;
+}
+
+/* 
+Documentacion pendiente
+*/
+cpp_dec_float_50 power_t(cpp_dec_float_50 x, cpp_dec_float_50 y)
+{
+    return exp_t(y*ln_t(x));
 }
 
 /*
 Documentacion pendiente
 */
-double atan_t(double x)
+cpp_dec_float_50 atan_t(cpp_dec_float_50 x)
 {
     if (x > 1)
     {
@@ -163,10 +201,10 @@ double atan_t(double x)
 }
 
 
-double atan_t_aux_firstCase(double x)
+cpp_dec_float_50 atan_t_aux_firstCase(cpp_dec_float_50 x)
 {
-    double s0 = x;
-    double sk;
+    cpp_dec_float_50 s0 = x;
+    cpp_dec_float_50 sk;
 
     for (int n = 0; n < iterMax; n++)
     {
@@ -175,15 +213,16 @@ double atan_t_aux_firstCase(double x)
         {
             break;
         }
+        sk = s0;
     }
     return sk;
 }
 
 
-double atan_t_aux(double x)
+cpp_dec_float_50 atan_t_aux(cpp_dec_float_50 x)
 {
-    double s0 = 1*divi_t(x);
-    double sk;
+    cpp_dec_float_50 s0 = 1*divi_t(x);
+    cpp_dec_float_50 sk;
 
     for (int n = 0; n < iterMax; n++)
     {
@@ -192,6 +231,7 @@ double atan_t_aux(double x)
         {
             break;
         }
+        sk = s0;
     }
     return sk;
 }

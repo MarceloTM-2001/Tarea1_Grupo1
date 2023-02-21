@@ -6,24 +6,37 @@
 #define TAREA1_GRUPO1_FUNCTIONS_H
 #include "iostream"
 #include "math.h"
+#include <boost/math/constants/constants.hpp>
+#include "boost/multiprecision/cpp_dec_float.hpp"
+#include "boost/multiprecision/cpp_int.hpp"
 
 using namespace std;
+using boost::multiprecision::cpp_dec_float_50;
 
 const int iterMax = 2500;
 const double tol = 10e-8;
 const double pi_t = 3.14159265358979323846;
 
-double divi_t(double x);
+cpp_dec_float_50 divi_t(cpp_dec_float_50 x);
 
-double ln_t(double x);
+cpp_dec_float_50 ln_t(cpp_dec_float_50 x);
 
-double log_t(double x,double y);
+cpp_dec_float_50 log_t(cpp_dec_float_50 x, cpp_dec_float_50 y);
 
-double atan_t(double x);
+cpp_dec_float_50 atan_t(cpp_dec_float_50 x);
 
-double sinh_t(double x);
+cpp_dec_float_50 sinh_t(cpp_dec_float_50 x);
 
-double exp_t(double x);
+cpp_dec_float_50 exp_t(cpp_dec_float_50 x);
 
+cpp_dec_float_50 factorial_t(cpp_dec_float_50 x);
+
+cpp_dec_float_50 atan_t_aux(cpp_dec_float_50 x);
+
+cpp_dec_float_50 atan_t_aux_firstCase(cpp_dec_float_50 x);
+
+cpp_dec_float_50 sec_t(cpp_dec_float_50 x);
+
+cpp_dec_float_50 cos_t(cpp_dec_float_50 x);
 
 #endif //TAREA1_GRUPO1_FUNCTIONS_H
