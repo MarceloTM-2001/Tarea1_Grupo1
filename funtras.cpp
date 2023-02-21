@@ -103,13 +103,12 @@ cpp_dec_float_50 factorial_t(cpp_dec_float_50 x)
     }
 }
 
-
 /*
 Documentacion pendiente
 */
 cpp_dec_float_50 exp_t(cpp_dec_float_50 x)
 {
-    if (x = 0)
+    if (x == 0)
     {
         return 0;
     }
@@ -124,7 +123,7 @@ cpp_dec_float_50 exp_t(cpp_dec_float_50 x)
         {
             break;
         }
-        sk = s0;
+        s0 = sk;
     }
     return sk;
 }
@@ -139,12 +138,13 @@ cpp_dec_float_50 cos_t(cpp_dec_float_50 x)
 
     for (int n = 1; n < iterMax; n++)
     {
-        sk = s0 + pow(-1, n) * pow(x, 2*n ) * divi_t(factorial_t(2*n));
+        sk = s0 + pow((-1), n) * pow(x, 2 * n) * divi_t(factorial_t(2 * n));
+        cout<< n << ", "<< x << ", sk = "<< sk << endl;
         if (abs(sk - s0) < tol)
         {
             break;
         }
-        sk = s0;
+        s0 = sk;
     }
     return sk;
 }
@@ -157,7 +157,7 @@ cpp_dec_float_50 sec_t(cpp_dec_float_50 x)
     return 1 * divi_t(cos_t(x));
 }
 
-/* 
+/*
 Documentacion pendiente
 */
 cpp_dec_float_50 sinh_t(cpp_dec_float_50 x)
@@ -177,12 +177,12 @@ cpp_dec_float_50 sinh_t(cpp_dec_float_50 x)
     return sk;
 }
 
-/* 
+/*
 Documentacion pendiente
 */
 cpp_dec_float_50 power_t(cpp_dec_float_50 x, cpp_dec_float_50 y)
 {
-    return exp_t(y*ln_t(x));
+    return exp_t(y * ln_t(x));
 }
 
 /*
@@ -192,14 +192,13 @@ cpp_dec_float_50 atan_t(cpp_dec_float_50 x)
 {
     if (x > 1)
     {
-        return pi_t*divi_t(2) - atan_t_aux(x);
+        return pi_t * divi_t(2) - atan_t_aux(x);
     }
     else if (x < 1)
     {
-        return - pi_t*divi_t(2) - atan_t_aux(x);
+        return -pi_t * divi_t(2) - atan_t_aux(x);
     }
 }
-
 
 cpp_dec_float_50 atan_t_aux_firstCase(cpp_dec_float_50 x)
 {
@@ -208,30 +207,29 @@ cpp_dec_float_50 atan_t_aux_firstCase(cpp_dec_float_50 x)
 
     for (int n = 0; n < iterMax; n++)
     {
-        sk = s0 + pow(-1,n)*pow(x,2*n + 1)*divi_t((2*n + 1)*pow(x, 2*n+1));
+        sk = s0 + pow(-1, n) * pow(x, 2 * n + 1) * divi_t((2 * n + 1) * pow(x, 2 * n + 1));
         if (abs(sk - s0) < tol)
         {
             break;
         }
-        sk = s0;
+        s0 = sk;
     }
     return sk;
 }
 
-
 cpp_dec_float_50 atan_t_aux(cpp_dec_float_50 x)
 {
-    cpp_dec_float_50 s0 = 1*divi_t(x);
+    cpp_dec_float_50 s0 = 1 * divi_t(x);
     cpp_dec_float_50 sk;
 
     for (int n = 0; n < iterMax; n++)
     {
-        sk = s0 + pow(-1,n)*divi_t((2*n + 1)*pow(x, 2*n+1));
+        sk = s0 + pow(-1, n) * divi_t((2 * n + 1) * pow(x, 2 * n + 1));
         if (abs(sk - s0) < tol)
         {
             break;
         }
-        sk = s0;
+        s0 = sk;
     }
     return sk;
 }
