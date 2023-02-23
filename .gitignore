@@ -1,5 +1,5 @@
 .idea
 .vscode
-cmake-build-build
+cmake-build-debug
 CMakeLists.txt
 main
