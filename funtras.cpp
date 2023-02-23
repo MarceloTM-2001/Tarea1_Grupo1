@@ -4,6 +4,7 @@
 //
 
 #include "funtras.h"
+
 bool errorflag = false;
 
 /*
@@ -121,16 +122,12 @@ Descripcion: Factorial de x
 Params x: corresponde al exponente de euler
 Se determina mediante recursividad
 */
-cpp_dec_float_50 factorial_t(cpp_dec_float_50 x)
+cpp_dec_float_50 factorial_t(int x)
 {
-    if (x == 0 or x == 1)
-    {
-        return 1;
-    }
-    else
-    {
-        return x * factorial_t(x - 1);
-    }
+    cpp_dec_float_50 fact = 1;
+    for (int i = x; i > 1; --i)
+        fact *= i;
+    return fact;
 }
 
 /*
@@ -205,7 +202,7 @@ cpp_dec_float_50 sinh_t(cpp_dec_float_50 x)
     cpp_dec_float_50 s0 = x;
     cpp_dec_float_50 sk;
 
-    for (int n = 0; n < iterMax; n++)
+    for (int n = 1; n < iterMax; n++)
     {
         sk = s0 + pow(x, 2 * n + 1) * divi_t(factorial_t(2 * n + 1));
         if (abs(sk - s0) < tol)

@@ -7,7 +7,8 @@
 #include "iostream"
 #include "math.h"
 #include "boost/multiprecision/cpp_dec_float.hpp"
-
+#include <boost/multiprecision/cpp_int.hpp>
+using namespace boost::multiprecision;
 using namespace std;
 using boost::multiprecision::cpp_dec_float_50;
 
@@ -27,7 +28,7 @@ cpp_dec_float_50 sinh_t(cpp_dec_float_50 x);
 
 cpp_dec_float_50 exp_t(cpp_dec_float_50 x);
 
-cpp_dec_float_50 factorial_t(cpp_dec_float_50 x);
+cpp_dec_float_50 factorial_t(int x);
 
 cpp_dec_float_50 atan_t_aux(cpp_dec_float_50 x);
 
