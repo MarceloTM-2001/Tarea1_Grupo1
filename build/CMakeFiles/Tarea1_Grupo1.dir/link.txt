@@ -1,1 +1,0 @@
-/usr/bin/g++ -g CMakeFiles/Tarea1_Grupo1.dir/main.cpp.o CMakeFiles/Tarea1_Grupo1.dir/funtras.cpp.o -o Tarea1_Grupo1 
