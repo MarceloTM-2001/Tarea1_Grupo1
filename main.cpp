@@ -55,7 +55,7 @@ int main()
                 numeric_limits<cpp_dec_float_50>::digits10)
          << sec_t(d) << endl;
 
-    int e = 80;
+    int e = -40;
     cout << "Arctan: " << e << " en radianes = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
@@ -66,7 +66,7 @@ int main()
     cout << g << " elevado a  " << f << " = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
-         << power_t(f, g) << endl;
+         << power_t(g, f) << endl;
 
     float h = pi_t / 4;
     cout << "Seno: " << h << " = "
