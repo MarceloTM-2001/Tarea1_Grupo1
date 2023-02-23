@@ -1,0 +1,3 @@
+/home/valesska/Desktop/ANPI/Tarea1_Grupo1/build/CMakeFiles/Tarea1_Grupo1.dir
+/home/valesska/Desktop/ANPI/Tarea1_Grupo1/build/CMakeFiles/edit_cache.dir
+/home/valesska/Desktop/ANPI/Tarea1_Grupo1/build/CMakeFiles/rebuild_cache.dir

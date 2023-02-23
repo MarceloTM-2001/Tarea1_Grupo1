@@ -146,12 +146,12 @@ cpp_dec_float_50 exp_t(cpp_dec_float_50 x)
         return 0;
     }
 
-    cpp_dec_float_50 s0 = 0;
+    cpp_dec_float_50 s0 = 1;
     cpp_dec_float_50 sk;
 
     for (int n = 1; n < iterMax; n++)
     {
-        sk = s0 + pow(x, n) * divi_t(factorial_t(n));
+        sk = s0 + (pow(x, n) * divi_t(factorial_t(n)));
         if (abs(sk - s0) < tol)
         {
             break;

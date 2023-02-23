@@ -4,8 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/home/diani/Downloads/**",
-                "/home/diani/Downloads/boost_1_81_0"
+                "/usr/include/boost"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

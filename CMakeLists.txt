@@ -3,4 +3,4 @@ project(Tarea1_Grupo1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Tarea1_Grupo1 main.cpp Functions.cpp Functions.h)
+add_executable(Tarea1_Grupo1 main.cpp funtras.cpp funtras.h)

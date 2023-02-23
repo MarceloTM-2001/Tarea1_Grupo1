@@ -1,2 +1,4 @@
-main: main.cpp
-	c++ -I /home/diani/Downloads/boost_1_81_0 main.cpp -o main
+main: main.cpp funtras.cpp
+	c++ -I /home/valesska/Desktop/ANPI/Tarea1_Grupo1 main.cpp -o main
+run:
+	./main

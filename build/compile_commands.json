@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/valesska/Desktop/ANPI/Tarea1_Grupo1/build",
+  "command": "/usr/bin/g++   -g -std=gnu++14 -o CMakeFiles/Tarea1_Grupo1.dir/main.cpp.o -c /home/valesska/Desktop/ANPI/Tarea1_Grupo1/main.cpp",
+  "file": "/home/valesska/Desktop/ANPI/Tarea1_Grupo1/main.cpp"
+},
+{
+  "directory": "/home/valesska/Desktop/ANPI/Tarea1_Grupo1/build",
+  "command": "/usr/bin/g++   -g -std=gnu++14 -o CMakeFiles/Tarea1_Grupo1.dir/funtras.cpp.o -c /home/valesska/Desktop/ANPI/Tarea1_Grupo1/funtras.cpp",
+  "file": "/home/valesska/Desktop/ANPI/Tarea1_Grupo1/funtras.cpp"
+}
+]

@@ -1,9 +1,9 @@
 #include <iostream>
 #include "funtras.h"
-#include "funtras.cpp"
+#include "funtras.cpp"  
 int main()
 {
-    int num = 6;
+    int num = 12;
     cout << "Factorial of " << num << " = "
          << factorial_t(num) << endl;
 
@@ -37,7 +37,7 @@ int main()
                 numeric_limits<cpp_dec_float_50>::digits10)
          << log_t(a1, a2) << endl;
 
-    int b = 6;
+    int b = 3;
     cout << "Exponencial: " << b << " = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
@@ -66,7 +66,7 @@ int main()
     cout << g << " elevado a  " << f << " = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
-         << power_t(f, g) << endl;
+         << power_t(g, f) << endl;
 
     float h = pi_t / 4;
     cout << "Seno: " << h << " = "
