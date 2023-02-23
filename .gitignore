@@ -1,5 +1,7 @@
 .idea
 .vscode
 cmake-build-debug
-CMakeLists.txt
+MakeFile
 main
+CMakeLists.txt
+Makefile

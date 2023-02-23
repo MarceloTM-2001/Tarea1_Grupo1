@@ -55,7 +55,7 @@ int main()
                 numeric_limits<cpp_dec_float_50>::digits10)
          << sec_t(d) << endl;
 
-    int e = 80;
+    int e = -40;
     cout << "Arctan: " << e << " en radianes = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
