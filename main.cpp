@@ -3,7 +3,7 @@
 #include "funtras.cpp"
 int main()
 {
-    int num = 6;
+    int num = 8.5;
     cout << "Factorial of " << num << " = "
          << factorial_t(num) << endl;
 
