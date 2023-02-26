@@ -6,6 +6,7 @@
 #define TAREA1_GRUPO1_FUNCTIONS_H
 #include "iostream"
 #include "math.h"
+#include <string>
 #include "boost/multiprecision/cpp_dec_float.hpp"
 #include <boost/multiprecision/cpp_int.hpp>
 using namespace boost::multiprecision;
@@ -43,5 +44,17 @@ cpp_dec_float_50 csc_t(cpp_dec_float_50 x);
 cpp_dec_float_50 sin_t(cpp_dec_float_50 x);
 
 cpp_dec_float_50 power_t(cpp_dec_float_50 x, cpp_dec_float_50 y);
+
+bool check_even(cpp_int num);
+
+cpp_dec_float_50 root_t(cpp_dec_float_50 x, cpp_dec_float_50 y);
+
+cpp_dec_float_50 root_t_aux(cpp_dec_float_50 x, cpp_dec_float_50 y);
+
+cpp_dec_float_50 sqrt_t(cpp_dec_float_50 x);
+
+cpp_dec_float_50 asin_t(cpp_dec_float_50 x);
+
+cpp_dec_float_50 cosh_t(cpp_dec_float_50 x);
 
 #endif //TAREA1_GRUPO1_FUNCTIONS_H

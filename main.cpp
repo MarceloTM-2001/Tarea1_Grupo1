@@ -79,5 +79,31 @@ int main()
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
          << csc_t(i) << endl;
-    return 0;
+     
+     float index = 3;
+     float subradix = 16;
+     cout << "Raíz: " << index << " de " << subradix << " = "
+          << setprecision(
+                 numeric_limits<cpp_dec_float_50>::digits10)
+          << root_t(subradix, index) << endl;
+          
+     cout << "Raíz cuadrada de: " << subradix << " = "
+          << setprecision(
+                 numeric_limits<cpp_dec_float_50>::digits10)
+          << sqrt_t(subradix) << endl;    
+     
+     float j = 0.7;
+     cout << "Arcoseno: " << j << " = "
+         << setprecision(
+                numeric_limits<cpp_dec_float_50>::digits10)
+         << asin_t(j) << endl;
+
+     float k = 0.3;
+     cout << "Coseno hiperbólico: " << k << " = "
+         << setprecision(
+                numeric_limits<cpp_dec_float_50>::digits10)
+         << cosh_t(k) << endl;
+
+     return 0;
+
 }

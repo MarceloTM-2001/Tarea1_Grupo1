@@ -1,3 +1,5 @@
 Makefile
 main
 CMakeLists.txt
+build
+.vscode
