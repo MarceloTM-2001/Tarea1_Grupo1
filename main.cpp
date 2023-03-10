@@ -104,6 +104,12 @@ int main()
                 numeric_limits<cpp_dec_float_50>::digits10)
          << cosh_t(k) << endl;
 
+     float l = pi_t / 4;
+     cout << "Cotangente de: " << l << " = "
+         << setprecision(
+                numeric_limits<cpp_dec_float_50>::digits10)
+         << cot_t(l) << endl;
+
      return 0;
 
 }

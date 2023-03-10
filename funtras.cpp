@@ -445,3 +445,14 @@ cpp_dec_float_50 cosh_t(cpp_dec_float_50 x)
     }
     return sk;
 }
+
+/*
+Descripcion: Aproximacion de la cotangente de x
+Params x: corresponde al argumento de la funcion
+s0: valor incial de la aproximacion
+sk: suma en la k-esima posicion
+*/
+cpp_dec_float_50 cot_t(cpp_dec_float_50 x)
+{
+    return ((cos_t(x)) * (divi_t(sin_t(x))));
+}
