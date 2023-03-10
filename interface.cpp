@@ -22,27 +22,27 @@ public:
     MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
     wxBoxSizer* m_mainSizer;
     std::vector<std::string> buttonLabels = {
-    "Button 1",
-    "Button 2",
-    "Button 3",
-    "Button 4",
-    "Button 5",
-    "Button 6",
-    "Button 7",
-    "Button 8",
-    "Button 9",
-    "Button 10",
-    "Button 11",
-    "Button 12",
-    "Button 13",
-    "Button 14",
-    "Button 15",
-    "Button 16",
-    "Button 17",
-    "Button 18",
-    "Button 19",
-    "Button 20",
-    "Button 21"
+    "senh(x)",
+    "cosh(x)",
+    "tanh(x)",
+    "asen(x)",
+    "acos(x)",
+    "atan(x)",
+    "sec(x)",
+    "csc(x)",
+    "cot(x)",
+    "sen(x)",
+    "cos(x)",
+    "tan(x)",
+    "ln(x)",
+    "log10(x)",
+    "logy(x)",
+    "1/x",
+    "√x",
+    "y√x",
+    "exp(x)",
+    "x^y",
+    "x!"
 };
 
 private:
