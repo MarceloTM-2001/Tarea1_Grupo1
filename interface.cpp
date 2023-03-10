@@ -8,7 +8,7 @@
 
 using namespace std;
 
-#define ENTRYMARGIN 100
+#define ENTRYMARGIN 40
 #define UENTRYSPACE 25 
 #define OFFSETSPACE 7
 #define OFFSETENTRY 75
@@ -27,6 +27,9 @@ class MyFrame : public wxFrame
 public:
     MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
     wxBoxSizer* m_mainSizer;
+
+    wxButton* clearButton;
+    wxButton* helpButton;
 
     wxStaticText* yFuncLabel;
     wxStaticText* xFuncLabel;
@@ -83,6 +86,11 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     xFuncLabel = new wxStaticText(this, wxID_ANY, wxT("x ="), wxPoint(ENTRYMARGIN,UENTRYSPACE+OFFSETSPACE));
     yFuncLabel = new wxStaticText(this, wxID_ANY, wxT("y ="), wxPoint(ENTRYMARGIN,UENTRYSPACE*3+OFFSETSPACE));
     ansFuncLabel = new wxStaticText(this, wxID_ANY, wxT("Answer ="), wxPoint(ENTRYMARGIN,UENTRYSPACE*5+OFFSETSPACE));
+
+    clearButton = new wxButton(this, 100, wxT("Clear"), wxPoint(ENTRYMARGIN+2.5*OFFSETENTRY, UENTRYSPACE+15), wxSize(75, 35));
+    Connect(100, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(MyFrame::OnButtonClicked));
+    helpButton = new wxButton(this, 101, wxT("Help!"), wxPoint(ENTRYMARGIN+2.5*OFFSETENTRY, UENTRYSPACE*5-15), wxSize(75, 35));
+    Connect(101, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(MyFrame::OnButtonClicked));
 
     xFuncEntry = new wxTextCtrl(this, wxID_ANY, wxT(""),
                                wxPoint(ENTRYMARGIN+OFFSETENTRY, UENTRYSPACE), wxDefaultSize,
