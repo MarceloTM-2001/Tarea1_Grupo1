@@ -430,7 +430,7 @@ sk: suma en la k-esima posicion
 */
 cpp_dec_float_50 cosh_t(cpp_dec_float_50 x)
 {
-    cpp_dec_float_50 s0 = x;
+    cpp_dec_float_50 s0 = 1;
     cpp_dec_float_50 sk = 0;
 
     for (int n = 1; n < iterMax; n++)

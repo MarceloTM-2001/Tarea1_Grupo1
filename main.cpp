@@ -98,7 +98,7 @@ int main()
                 numeric_limits<cpp_dec_float_50>::digits10)
          << asin_t(j) << endl;
 
-     float k = 0.3;
+     float k = pi_t / 4;
      cout << "Coseno hiperbólico: " << k << " = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
