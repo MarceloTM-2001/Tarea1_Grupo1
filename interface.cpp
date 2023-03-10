@@ -8,6 +8,12 @@
 
 using namespace std;
 
+#define ENTRYMARGIN 100
+#define UENTRYSPACE 25 
+#define OFFSETSPACE 7
+#define OFFSETENTRY 75
+
+
 
 class MyApp : public wxApp
 {
@@ -29,9 +35,6 @@ public:
     wxTextCtrl* yFuncEntry;
     wxTextCtrl* xFuncEntry;
     wxTextCtrl* ansFuncEntry;
-
-    int ENTRYMARGIN = 100;
-    int UENTRYSPACE = 25; 
 
     std::vector<std::string> buttonLabels = {
     "senh(x)",
@@ -77,20 +80,20 @@ bool MyApp::OnInit()
 MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
-    xFuncLabel = new wxStaticText(this, wxID_ANY, wxT("x ="), wxPoint(ENTRYMARGIN,UENTRYSPACE+5));
-    yFuncLabel = new wxStaticText(this, wxID_ANY, wxT("y ="), wxPoint(ENTRYMARGIN,UENTRYSPACE*3+5));
-    ansFuncLabel = new wxStaticText(this, wxID_ANY, wxT("Answer ="), wxPoint(ENTRYMARGIN,UENTRYSPACE*5+5));
+    xFuncLabel = new wxStaticText(this, wxID_ANY, wxT("x ="), wxPoint(ENTRYMARGIN,UENTRYSPACE+OFFSETSPACE));
+    yFuncLabel = new wxStaticText(this, wxID_ANY, wxT("y ="), wxPoint(ENTRYMARGIN,UENTRYSPACE*3+OFFSETSPACE));
+    ansFuncLabel = new wxStaticText(this, wxID_ANY, wxT("Answer ="), wxPoint(ENTRYMARGIN,UENTRYSPACE*5+OFFSETSPACE));
 
     xFuncEntry = new wxTextCtrl(this, wxID_ANY, wxT(""),
-                               wxPoint(ENTRYMARGIN+75, UENTRYSPACE), wxDefaultSize,
+                               wxPoint(ENTRYMARGIN+OFFSETENTRY, UENTRYSPACE), wxDefaultSize,
                                wxTE_PROCESS_ENTER);
 
     yFuncEntry = new wxTextCtrl(this, wxID_ANY, wxT(""),
-                               wxPoint(ENTRYMARGIN+75, UENTRYSPACE*3), wxDefaultSize,
+                               wxPoint(ENTRYMARGIN+OFFSETENTRY, UENTRYSPACE*3), wxDefaultSize,
                                wxTE_PROCESS_ENTER);
 
     ansFuncEntry = new wxTextCtrl(this, wxID_ANY, wxT(""),
-                               wxPoint(ENTRYMARGIN+75, UENTRYSPACE*5), wxDefaultSize,
+                               wxPoint(ENTRYMARGIN+OFFSETENTRY, UENTRYSPACE*5), wxDefaultSize,
                                wxTE_PROCESS_ENTER);
 
     m_mainSizer = new wxBoxSizer(wxVERTICAL);
