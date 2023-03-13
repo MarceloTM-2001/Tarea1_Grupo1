@@ -268,7 +268,9 @@ cpp_dec_float_50 power_t(cpp_dec_float_50 x, cpp_dec_float_50 y)
 }
 
 /*
-Documentacion pendiente debido a dudas con la funcion
+Descripcion: Aproximacion de arcotangente de x
+Params x: argumento de la funcion
+Se utilizan distintas condicionales para los dominios
 */
 cpp_dec_float_50 atan_t(cpp_dec_float_50 x)
 {
@@ -276,9 +278,12 @@ cpp_dec_float_50 atan_t(cpp_dec_float_50 x)
     {
         return pi_t * divi_t(2) - atan_t_aux(x);
     }
-    else if (x < 1)
+    else if (x < -1)
     {
         return -pi_t * divi_t(2) - atan_t_aux(x);
+    }
+    else{
+        return atan_t_aux_firstCase(x);
     }
 }
 
@@ -287,9 +292,9 @@ cpp_dec_float_50 atan_t_aux_firstCase(cpp_dec_float_50 x)
     cpp_dec_float_50 s0 = x;
     cpp_dec_float_50 sk;
 
-    for (int n = 0; n < iterMax; n++)
+    for (int n = 1; n < iterMax; n++)
     {
-        sk = s0 + pow(-1, n) * pow(x, 2 * n + 1) * divi_t((2 * n + 1) * pow(x, 2 * n + 1));
+        sk = s0 + pow(-1, n) * pow(x, 2 * n + 1) * divi_t(2 * n + 1);
         if (abs(sk - s0) < tol)
         {
             break;
@@ -304,7 +309,7 @@ cpp_dec_float_50 atan_t_aux(cpp_dec_float_50 x)
     cpp_dec_float_50 s0 = 1 * divi_t(x);
     cpp_dec_float_50 sk;
 
-    for (int n = 0; n < iterMax; n++)
+    for (int n = 1; n < iterMax; n++)
     {
         sk = s0 + pow(-1, n) * divi_t((2 * n + 1) * pow(x, 2 * n + 1));
         if (abs(sk - s0) < tol)
