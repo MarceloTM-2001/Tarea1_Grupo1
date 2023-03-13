@@ -5,6 +5,7 @@
 
 #include "funtras.h"
 
+
 bool errorflag = false;
 
 /*
@@ -148,7 +149,7 @@ cpp_dec_float_50 exp_t(cpp_dec_float_50 x)
 
     for (int n = 1; n < iterMax; n++)
     {
-        sk = s0 + pow(x, n) * divi_t(factorial_t(n));
+        sk = s0 + (pow(x, n) * divi_t(factorial_t(n)));
         if (abs(sk - s0) < tol)
         {
             break;
@@ -318,4 +319,145 @@ cpp_dec_float_50 atan_t_aux(cpp_dec_float_50 x)
         s0 = sk;
     }
     return sk;
+}
+
+/*
+Descripcion: Función que determina si un número entero es par
+Params num: numero por analizar
+Se resta 2 al numero hasta llegar a cero a -1, en el primer
+caso, el numero es par, si no, es impar
+*/
+
+bool check_even(cpp_int num)
+{
+    while (true)
+    {
+        if (num == -1)
+        {
+            return false;
+        }
+        else if (num == 0)
+        {
+            return true;
+        }
+
+        num = num - 2;
+    }
+}
+
+/*
+Descripcion: Aproximacion de la raíz y de x
+Params x: corresponde al subradical 
+Params y: corresponde al indice de la raiz
+Se realiza la validación de los parámetros de entrada
+*/
+
+cpp_dec_float_50 root_t(cpp_dec_float_50 x, cpp_dec_float_50 y)
+{
+    if (check_even(cpp_int(y)) && (x < 0) | (y == 0))
+    {
+        errorflag = true;
+        cout << "Root not defined" << endl;
+        return 0;
+    }
+    else
+    {
+        return root_t_aux(x, y);
+    }
+}
+
+/*
+Descripcion: Aproximacion de la raíz y de x
+Params x: corresponde al subradical 
+Params y: corresponde al indice de la raiz
+Se utiliza una aproximación para el cálculo del valor final
+*/
+
+cpp_dec_float_50 root_t_aux(cpp_dec_float_50 x, cpp_dec_float_50 y)
+{
+    cpp_dec_float_50 x0 = x * divi_t(2);
+    cpp_dec_float_50 xk;
+
+    for (int n = 0; n < iterMax; n++)
+    {
+        xk = x0 - ((pow(x0, y) - x) * divi_t(y * pow(x0, y - 1)));
+        if (abs(xk - x0) < tol)
+        { 
+            break;
+        }
+        x0 = xk;
+    }
+    return xk;
+}
+
+/*
+Descripcion: Aproximacion de la raíz cuadrada de x
+Params x: corresponde al subradical
+Se utiliza la propiedad que define a la raiz como un exponente
+*/
+
+cpp_dec_float_50 sqrt_t(cpp_dec_float_50 x)
+{
+    return root_t(x, 2);
+}
+
+
+/*
+Descripcion: Aproximacion del arcoseno de x
+Params x: corresponde al argumento de la funcion
+s0: valor incial de la aproximacion
+sk: suma en la k-esima posicion
+*/
+cpp_dec_float_50 asin_t(cpp_dec_float_50 x)
+{
+    cpp_dec_float_50 s0 = x;
+    cpp_dec_float_50 sk = 0;
+
+    for (int n = 1; n < iterMax; n++)
+    {
+        cpp_dec_float_50 denominator = (pow(4, n) * pow(factorial_t(n), 2) * ((2 * n) + 1));
+
+        sk = s0 + ((factorial_t(2 * n)) * (pow(x, ((2 * n) + 1))) * (divi_t(denominator)));
+        if (abs(sk - s0) < tol)
+        { 
+            break;
+        }
+        s0 = sk; 
+    }
+    return sk;
+}
+
+/*
+Descripcion: Aproximacion del coseno hiperbólico de x
+Params x: corresponde al argumento de la funcion
+s0: valor incial de la aproximacion
+sk: suma en la k-esima posicion
+*/
+cpp_dec_float_50 cosh_t(cpp_dec_float_50 x)
+{
+    cpp_dec_float_50 s0 = 1;
+    cpp_dec_float_50 sk = 0;
+
+    for (int n = 1; n < iterMax; n++)
+    {
+
+        sk = s0 + ((pow(x, (2 * n))) * (divi_t(factorial_t(2 * n))));
+        if (abs(sk - s0) < tol)
+        { 
+            break;
+        }
+        s0 = sk; 
+    }
+    return sk;
+}
+
+/*
+Descripcion: Aproximacion de la cotangente de x
+Params x: corresponde al argumento de la funcion
+s0: valor incial de la aproximacion
+sk: suma en la k-esima posicion
+*/
+cpp_dec_float_50 cot_t(cpp_dec_float_50 x)
+{
+    return ((cos_t(x)) * (divi_t(sin_t(x))));
 }

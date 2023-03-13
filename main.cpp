@@ -1,9 +1,9 @@
 #include <iostream>
 #include "funtras.h"
-#include "funtras.cpp"
+#include "funtras.cpp"  
 int main()
 {
-    int num = 8.5;
+    int num = 12;
     cout << "Factorial of " << num << " = "
          << factorial_t(num) << endl;
 
@@ -37,7 +37,7 @@ int main()
                 numeric_limits<cpp_dec_float_50>::digits10)
          << log_t(a1, a2) << endl;
 
-    int b = 6;
+    int b = 3;
     cout << "Exponencial: " << b << " = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
@@ -79,5 +79,37 @@ int main()
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
          << csc_t(i) << endl;
-    return 0;
+     
+     float index = 3;
+     float subradix = 16;
+     cout << "Raíz: " << index << " de " << subradix << " = "
+          << setprecision(
+                 numeric_limits<cpp_dec_float_50>::digits10)
+          << root_t(subradix, index) << endl;
+          
+     cout << "Raíz cuadrada de: " << subradix << " = "
+          << setprecision(
+                 numeric_limits<cpp_dec_float_50>::digits10)
+          << sqrt_t(subradix) << endl;    
+     
+     float j = 0.7;
+     cout << "Arcoseno: " << j << " = "
+         << setprecision(
+                numeric_limits<cpp_dec_float_50>::digits10)
+         << asin_t(j) << endl;
+
+     float k = pi_t / 4;
+     cout << "Coseno hiperbólico: " << k << " = "
+         << setprecision(
+                numeric_limits<cpp_dec_float_50>::digits10)
+         << cosh_t(k) << endl;
+
+     float l = pi_t / 4;
+     cout << "Cotangente de: " << l << " = "
+         << setprecision(
+                numeric_limits<cpp_dec_float_50>::digits10)
+         << cot_t(l) << endl;
+
+     return 0;
+
 }
