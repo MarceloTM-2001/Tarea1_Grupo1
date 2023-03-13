@@ -222,18 +222,18 @@ sk: suma en la k-esima posicion
 */
 cpp_dec_float_50 sin_t(cpp_dec_float_50 x)
 {
-    cpp_dec_float_50 s0 = x; // La primera iteración equivale al número dado en sí
+    cpp_dec_float_50 s0 = x; 
     cpp_dec_float_50 sk = 0;
     for (int n = 1; n < iterMax; n++)
     {
-        sk = s0 + (pow((-1), n) * pow(x, (2 * n) + 1) * divi_t(factorial_t((2 * n) + 2))); // Siguiente Iteración
+        sk = s0 + (pow((-1), n) * pow(x, (2 * n) + 1) * divi_t(factorial_t((2 * n) + 1))); 
         if (abs(sk - s0) < tol)
-        { // Cumple con la tolerancia
+        { 
             break;
         }
-        s0 = sk; // Guardo el valor y continúo iterando
+        s0 = sk; 
     }
-    return sk; // Devuelvo iteración de mayor precisión
+    return sk; 
 }
 
 /*
