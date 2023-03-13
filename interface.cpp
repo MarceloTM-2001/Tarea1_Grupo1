@@ -134,5 +134,75 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 
 void MyFrame::OnButtonClicked(wxCommandEvent& event)
 {
-    cout<<event.GetId()<<endl;
+    if (event.GetId()==11)
+    {
+        /* code */
+    } else if (event.GetId()==12)
+    {
+        /* code */
+    } else if (event.GetId()==13)
+    {
+        /* code */
+    } else if (event.GetId()==21)
+    {
+        /* code */
+    } else if (event.GetId()==22)
+    {
+        /* code */
+    } else if (event.GetId()==23)
+    {
+        /* code */
+    } else if (event.GetId()==31)
+    {
+        /* code */
+    } else if (event.GetId()==32)
+    {
+        /* code */
+    } else if (event.GetId()==33)
+    {
+        /* code */
+    } else if (event.GetId()==41)
+    {
+        /* code */
+    } else if (event.GetId()==42)
+    {
+        /* code */
+    } else if (event.GetId()==43)
+    {
+        /* code */
+    } else if (event.GetId()==51)
+    {
+        /* code */
+    } else if (event.GetId()==52)
+    {
+        /* code */
+    } else if (event.GetId()==53)
+    {
+        /* code */
+    } else if (event.GetId()==61)
+    {
+        /* code */
+    } else if (event.GetId()==62)
+    {
+        /* code */
+    } else if (event.GetId()==63)
+    {
+        /* code */
+    } else if (event.GetId()==71)
+    {
+        /* code */
+    } else if (event.GetId()==72)
+    {
+        /* code */
+    } else if (event.GetId()==73)
+    {
+        /* code */
+    } else if (event.GetId()==100)
+    {
+        clearButton.
+    } else if (event.GetId()==101)
+    {
+        /* code */
+    
+    }
 }
