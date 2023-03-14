@@ -3,7 +3,7 @@
 #include "funtras.cpp"  
 int main()
 {
-    int num = 12;
+    int num = 0;
     cout << "Factorial of " << num << " = "
          << factorial_t(num) << endl;
 
@@ -49,13 +49,13 @@ int main()
                 numeric_limits<cpp_dec_float_50>::digits10)
          << cos_t(c) << endl;
 
-    float d = pi_t / 4;
+    float d = 0;
     cout << "Secante: " << d << " = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
          << sec_t(d) << endl;
 
-    int e = -40;
+    int e = 0;
     cout << "Arctan: " << e << " en radianes = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
@@ -74,7 +74,7 @@ int main()
                 numeric_limits<cpp_dec_float_50>::digits10)
          << sin_t(h) << endl;
 
-    float i = pi_t / 4;
+    float i = pi_t;
     cout << "Cosecante: " << i << " = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
@@ -104,11 +104,23 @@ int main()
                 numeric_limits<cpp_dec_float_50>::digits10)
          << cosh_t(k) << endl;
 
-     float l = pi_t / 4;
+     float l = pi_t;
      cout << "Cotangente de: " << l << " = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)
          << cot_t(l) << endl;
+
+     float o = pi_t;
+     cout << "Tangente de: " << o << " = "
+         << setprecision(
+                numeric_limits<cpp_dec_float_50>::digits10)
+         << tan_t(l) << endl;
+
+     float p = pi_t;
+     cout << "Tangente hiperbólico de: " << p << " = "
+         << setprecision(
+                numeric_limits<cpp_dec_float_50>::digits10)
+         << tanh_t(l) << endl;
 
      return 0;
 

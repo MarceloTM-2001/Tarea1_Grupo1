@@ -102,15 +102,19 @@ sk: suma en la k-esima posicion
 */
 cpp_dec_float_50 log_t(cpp_dec_float_50 x, cpp_dec_float_50 y)
 {
-    if (x <= 0 or y < 0 or (x == 1 and y == 1))
+    if (x <= 0 || y <= 0 || y==1)
     { // Casos donde el logaritmo se indefine
         errorflag = true;
         cout << "Logaritmo indefinido" << endl;
         return -1;
     }
-    else if (y == 0)
-    { // Caso especial base 0 da siempre 0
+    else if (x == 1)
+    { // Caso base 1 da siempre 0
         return 0;
+    }
+    else if (x == y)
+    { // Caso base igual a argumento da 1
+        return 1;
     }
     else
     { // Caso regular
@@ -189,9 +193,17 @@ Se aproxima mediante la equivalencia con coseno.
 */
 cpp_dec_float_50 sec_t(cpp_dec_float_50 x)
 {
-    return 1 * divi_t(cos_t(x));
+    if ((x != 0) && (abs(fmod(x, pi_t/2)) < tol))
+    { // Caso de error cuando cos se hace 0 se indefine el sec
+        errorflag = true;
+        cout << "División por 0" << endl;
+        return -1;
+    }
+    else
+    {
+        return divi_t(cos_t(x)); // se devuelve el cos(x)^-1
+    }
 }
-
 /*
 Descripcion: Aproximacion de seno hiperbolico de x 
 Params x: corresponde al argumento de la funcion
@@ -227,7 +239,7 @@ cpp_dec_float_50 sin_t(cpp_dec_float_50 x)
     cpp_dec_float_50 sk = 0;
     for (int n = 1; n < iterMax; n++)
     {
-        sk = s0 + (pow((-1), n) * pow(x, (2 * n) + 1) * divi_t(factorial_t((2 * n) + 2))); // Siguiente Iteración
+        sk = s0 + (pow((-1), n) * pow(x, (2 * n) + 1) * divi_t(factorial_t((2 * n) + 1))); // Siguiente Iteración
         if (abs(sk - s0) < tol)
         { // Cumple con la tolerancia
             break;
@@ -244,11 +256,11 @@ Se verifica mediante la equivalencia con seno
 */
 cpp_dec_float_50 csc_t(cpp_dec_float_50 x)
 {
-    if (fmod(x, pi_t) == 0)
+    if (abs(fmod(x, pi_t)) < tol)
     { // Caso de error cuando sen se hace 0 se indefine el csc
         errorflag = true;
         cout << "División por 0" << endl;
-        return 0;
+        return -1;
     }
     else
     {
@@ -354,11 +366,11 @@ Se realiza la validación de los parámetros de entrada
 
 cpp_dec_float_50 root_t(cpp_dec_float_50 x, cpp_dec_float_50 y)
 {
-    if (check_even(cpp_int(y)) && (x < 0) | (y == 0))
+    if ((check_even(cpp_int(y)) && (x < 0)) || (y == 0))
     {
         errorflag = true;
         cout << "Root not defined" << endl;
-        return 0;
+        return -1;
     }
     else
     {
@@ -412,19 +424,25 @@ cpp_dec_float_50 asin_t(cpp_dec_float_50 x)
 {
     cpp_dec_float_50 s0 = x;
     cpp_dec_float_50 sk = 0;
-
-    for (int n = 1; n < iterMax; n++)
-    {
-        cpp_dec_float_50 denominator = (pow(4, n) * pow(factorial_t(n), 2) * ((2 * n) + 1));
-
-        sk = s0 + ((factorial_t(2 * n)) * (pow(x, ((2 * n) + 1))) * (divi_t(denominator)));
-        if (abs(sk - s0) < tol)
-        { 
-            break;
+    if (x >= -1 && x <= 1){
+        for (int n = 1; n < iterMax; n++)
+        {
+            cpp_dec_float_50 denominator = (pow(4, n) * pow(factorial_t(n), 2) * ((2 * n) + 1));
+            sk = s0 + ((factorial_t(2 * n)) * (pow(x, ((2 * n) + 1))) * (divi_t(denominator)));
+            if (abs(sk - s0) < tol)
+            { 
+                break;
+            }
+            s0 = sk; 
         }
-        s0 = sk; 
+        return sk;
+    } else
+    {
+        errorflag = true;
+        cout << "Arcoseno indefinido" << endl;
+        return -1;
     }
-    return sk;
+    
 }
 
 /*
@@ -459,5 +477,42 @@ sk: suma en la k-esima posicion
 */
 cpp_dec_float_50 cot_t(cpp_dec_float_50 x)
 {
-    return ((cos_t(x)) * (divi_t(sin_t(x))));
+    if (abs(fmod(x, pi_t)) < tol)
+    { // Caso de error cuando sen se hace 0 se indefine el csc
+        errorflag = true;
+        cout << "División por 0" << endl;
+        return -1;
+    }
+    else
+    {
+        return ((cos_t(x)) * (divi_t(sin_t(x)))); //se devuelve cos(x) * 1/sen(x) 
+    }
+}
+
+/*
+Descripcion: Aproximacion de tangente de x 
+Params x: corresponde al argumento de la funcion
+Se verifica mediante la equivalencia de seno entre coseno
+*/
+cpp_dec_float_50 tan_t(cpp_dec_float_50 x)
+{
+    if ((x != 0) && (abs(fmod(x, pi_t/2)) < tol))
+    { // Caso de error cuando cos se hace 0 se indefine tan
+        errorflag = true;
+        cout << "División por 0" << endl;
+        return 0;
+    }
+    else
+    {
+        return (sin_t(x)*divi_t(cos_t(x))); // se devuelve el sen(x)*cos(x)^-1
+    }
+}
+
+/*
+Descripcion: Aproximacion de tangente de x 
+Params x: corresponde al argumento de la funcion
+Se verifica mediante la equivalencia de seno entre coseno
+*/
+cpp_dec_float_50 tanh_t(cpp_dec_float_50 x){
+    return (sinh_t(x)*divi_t(cosh_t(x)));
 }

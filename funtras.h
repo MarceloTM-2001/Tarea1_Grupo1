@@ -57,4 +57,8 @@ cpp_dec_float_50 asin_t(cpp_dec_float_50 x);
 
 cpp_dec_float_50 cosh_t(cpp_dec_float_50 x);
 
+cpp_dec_float_50 tan_t(cpp_dec_float_50 x);
+
+cpp_dec_float_50 tanh_t(cpp_dec_float_50 x);
+
 #endif //TAREA1_GRUPO1_FUNCTIONS_H
