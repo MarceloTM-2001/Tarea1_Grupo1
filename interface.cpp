@@ -9,6 +9,7 @@
 
 using namespace std;
 
+//Márgenes utilizados para la colocación de los widgets
 #define ENTRYMARGIN 40
 #define UENTRYSPACE 25 
 #define OFFSETSPACE 7
@@ -28,7 +29,8 @@ class MyFrame : public wxFrame
 public:
     MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
     wxBoxSizer* m_mainSizer;
-
+    
+    //Declaración de los widgets principales
     wxButton* clearButton;
     wxButton* helpButton;
 
@@ -40,6 +42,7 @@ public:
     wxTextCtrl* xFuncEntry;
     wxTextCtrl* ansFuncEntry;
 
+    //Etiquetas para los botones
     std::vector<std::string> buttonLabels = {
     "senh(x)",
     "cosh(x)",
@@ -85,15 +88,18 @@ bool MyApp::OnInit()
 MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
+    //Etiquetas de la interfaz
     xFuncLabel = new wxStaticText(this, wxID_ANY, wxT("x ="), wxPoint(ENTRYMARGIN,UENTRYSPACE+OFFSETSPACE));
     yFuncLabel = new wxStaticText(this, wxID_ANY, wxT("y ="), wxPoint(ENTRYMARGIN,UENTRYSPACE*3+OFFSETSPACE));
     ansFuncLabel = new wxStaticText(this, wxID_ANY, wxT("Answer ="), wxPoint(ENTRYMARGIN,UENTRYSPACE*5+OFFSETSPACE));
 
+    //Definición de botones help y clear
     clearButton = new wxButton(this, 100, wxT("Clear"), wxPoint(ENTRYMARGIN+2.5*OFFSETENTRY, UENTRYSPACE+15), wxSize(75, 35));
     Connect(100, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(MyFrame::OnButtonClicked));
     helpButton = new wxButton(this, 101, wxT("Help!"), wxPoint(ENTRYMARGIN+2.5*OFFSETENTRY, UENTRYSPACE*5-15), wxSize(75, 35));
     Connect(101, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(MyFrame::OnButtonClicked));
 
+    //Espacios de entradas y salida
     xFuncEntry = new wxTextCtrl(this, wxID_ANY, wxT(""),
                                wxPoint(ENTRYMARGIN+OFFSETENTRY, UENTRYSPACE), wxDefaultSize,
                                wxTE_PROCESS_ENTER);
@@ -106,6 +112,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
                                wxPoint(ENTRYMARGIN+OFFSETENTRY, UENTRYSPACE*5), wxDefaultSize,
                                wxTE_PROCESS_ENTER);
 
+    //Link con eventos
     xFuncEntry->Bind(wxEVT_CHAR, &MyFrame::OnChar, this);
     yFuncEntry->Bind(wxEVT_CHAR, &MyFrame::OnChar, this);
     ansFuncEntry->SetEditable(false);
@@ -113,11 +120,13 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     m_mainSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(m_mainSizer);
 
+    //Grid para los botones
     wxGridSizer* buttonSizer = new wxGridSizer(7, 3, 10, 10);
 
     int i = 1;
     int j = 1;
 
+    //Creación de los botones para las funciones
     for (const auto& label : buttonLabels)
     {
         wxButton* button = new wxButton(this, i*10+j, wxString::FromUTF8(label), wxDefaultPosition, wxSize(100, 50));
@@ -140,6 +149,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 
 void MyFrame::OnButtonClicked(wxCommandEvent& event)
 {
+    //Lógica de selección de función, manejo de errores y validaciones
     errorflag = false;
     this->ansFuncEntry->Clear();
     cpp_dec_float_50 ans;
