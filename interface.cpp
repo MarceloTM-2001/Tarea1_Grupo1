@@ -5,6 +5,7 @@
 #endif
 
 #include <iostream>
+#include "funtras.cpp"
 
 using namespace std;
 
@@ -66,6 +67,7 @@ public:
 private:
     
     void OnButtonClicked(wxCommandEvent& event);
+    void OnChar(wxKeyEvent& event);
 
 };
 
@@ -104,6 +106,10 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
                                wxPoint(ENTRYMARGIN+OFFSETENTRY, UENTRYSPACE*5), wxDefaultSize,
                                wxTE_PROCESS_ENTER);
 
+    xFuncEntry->Bind(wxEVT_CHAR, &MyFrame::OnChar, this);
+    yFuncEntry->Bind(wxEVT_CHAR, &MyFrame::OnChar, this);
+    ansFuncEntry->SetEditable(false);
+    
     m_mainSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(m_mainSizer);
 
@@ -134,75 +140,114 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 
 void MyFrame::OnButtonClicked(wxCommandEvent& event)
 {
-    if (event.GetId()==11)
-    {
-        /* code */
-    } else if (event.GetId()==12)
-    {
-        /* code */
-    } else if (event.GetId()==13)
-    {
-        /* code */
-    } else if (event.GetId()==21)
-    {
-        /* code */
-    } else if (event.GetId()==22)
-    {
-        /* code */
-    } else if (event.GetId()==23)
-    {
-        /* code */
-    } else if (event.GetId()==31)
-    {
-        /* code */
-    } else if (event.GetId()==32)
-    {
-        /* code */
-    } else if (event.GetId()==33)
-    {
-        /* code */
-    } else if (event.GetId()==41)
-    {
-        /* code */
-    } else if (event.GetId()==42)
-    {
-        /* code */
-    } else if (event.GetId()==43)
-    {
-        /* code */
-    } else if (event.GetId()==51)
-    {
-        /* code */
-    } else if (event.GetId()==52)
-    {
-        /* code */
-    } else if (event.GetId()==53)
-    {
-        /* code */
-    } else if (event.GetId()==61)
-    {
-        /* code */
-    } else if (event.GetId()==62)
-    {
-        /* code */
-    } else if (event.GetId()==63)
-    {
-        /* code */
-    } else if (event.GetId()==71)
-    {
-        /* code */
-    } else if (event.GetId()==72)
-    {
-        /* code */
-    } else if (event.GetId()==73)
-    {
-        /* code */
-    } else if (event.GetId()==100)
-    {
-        clearButton.
-    } else if (event.GetId()==101)
-    {
-        /* code */
+    errorflag = false;
+    this->ansFuncEntry->Clear();
+    cpp_dec_float_50 ans;
+
+    if (event.GetId()!=53 && event.GetId()!=63 && event.GetId()!=72 && event.GetId()!=100 && event.GetId()!=101){
+        if (this->xFuncEntry->IsEmpty() == false)
+        {
+            cpp_dec_float_50 num(this->xFuncEntry->GetValue().ToStdString());
+            int numint = wxAtoi(this->xFuncEntry->GetValue().ToStdString());
+
+            if (event.GetId()==11){
+                ans = sinh_t(num);
+            } else if (event.GetId()==12) {
+                ans = cosh_t(num);
+            } else if (event.GetId()==13) {
+                ans = tanh_t(num);
+            } else if (event.GetId()==21) {
+                ans = asin_t(num);
+            } else if (event.GetId()==22) {
+                ans = acos_t(num);
+            } else if (event.GetId()==23) {
+                ans = atan_t(num);
+            } else if (event.GetId()==31) {
+                ans = sec_t(num);
+            } else if (event.GetId()==32) {
+                ans = csc_t(num);
+            } else if (event.GetId()==33) {
+                ans = cot_t(num);
+            } else if (event.GetId()==41) {
+                ans = sin_t(num);
+            } else if (event.GetId()==42) {
+                ans = cos_t(num);
+            } else if (event.GetId()==43) {
+                ans = tan_t(num);
+            } else if (event.GetId()==51) {
+                ans = ln_t(num);
+            } else if (event.GetId()==52) {
+                ans = log10_t(num);
+            } else if (event.GetId()==61) {
+                ans = divi_t(num);
+            } else if (event.GetId()==62) {
+                ans = sqrt_t(num);
+            } else if (event.GetId()==71) {
+                ans = exp_t(num);
+            } else if (event.GetId()==73) {
+                ans = factorial_t(numint);
+            }
+
+            if (errorflag == false){
+                this->ansFuncEntry->WriteText(to_string(ans));
+            } else {
+                this->ansFuncEntry->WriteText("Indefinido");
+            }
+            
+        } else {
+            wxMessageBox("Debe ingresar un valor para x");
+        }
+    } else if (event.GetId()==100 || event.GetId()==101){
+        if (event.GetId()==100){
+            this->ansFuncEntry->Clear();
+            this->xFuncEntry->Clear();
+            this->yFuncEntry->Clear();
+        } else if (event.GetId()==101) {
+            
+        }
     
+    } else {
+        if (this->xFuncEntry->IsEmpty() == false && this->yFuncEntry->IsEmpty() == false)
+        {
+            cpp_dec_float_50 num(this->xFuncEntry->GetValue().ToStdString());
+            cpp_dec_float_50 num1(this->yFuncEntry->GetValue().ToStdString());
+
+            if (event.GetId()==53) {
+                ans = log_t(num, num1);
+            } else if (event.GetId()==63) {
+                ans = root_t(num, num1);
+            } else if (event.GetId()==72) {
+                ans = power_t(num, num1);
+            }
+
+            if (errorflag == false){
+                this->ansFuncEntry->WriteText(to_string(ans));
+            } else {
+                this->ansFuncEntry->WriteText("Indefinido");
+            }
+
+        } else {
+            wxMessageBox("Debe ingresar un valor para x, y");
+        }    
+    }
+}
+
+void MyFrame::OnChar(wxKeyEvent& event)
+{
+    // Obtiene el código de la tecla presionada
+    int keycode = event.GetKeyCode();
+
+    // Verificacion de tipo de caracter
+    if (keycode >= '0' && keycode <= '9' || keycode == '.' ||
+        keycode == wxKeyCode::WXK_LEFT || keycode == wxKeyCode::WXK_RIGHT ||
+        keycode == wxKeyCode::WXK_BACK || keycode == wxKeyCode::WXK_DELETE)
+    {
+        // Acepta la tecla
+        event.Skip();
+    }
+    else
+    {
+        // Descarta la tecla
+        return;
     }
 }

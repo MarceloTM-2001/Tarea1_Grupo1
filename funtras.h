@@ -23,6 +23,8 @@ cpp_dec_float_50 ln_t(cpp_dec_float_50 x);
 
 cpp_dec_float_50 log_t(cpp_dec_float_50 x, cpp_dec_float_50 y);
 
+cpp_dec_float_50 log10_t(cpp_dec_float_50 x);
+
 cpp_dec_float_50 atan_t(cpp_dec_float_50 x);
 
 cpp_dec_float_50 sinh_t(cpp_dec_float_50 x);
@@ -38,6 +40,8 @@ cpp_dec_float_50 atan_t_aux_firstCase(cpp_dec_float_50 x);
 cpp_dec_float_50 sec_t(cpp_dec_float_50 x);
 
 cpp_dec_float_50 cos_t(cpp_dec_float_50 x);
+
+cpp_dec_float_50 acos_t(cpp_dec_float_50 x);
 
 cpp_dec_float_50 csc_t(cpp_dec_float_50 x);
 
@@ -60,5 +64,7 @@ cpp_dec_float_50 cosh_t(cpp_dec_float_50 x);
 cpp_dec_float_50 tan_t(cpp_dec_float_50 x);
 
 cpp_dec_float_50 tanh_t(cpp_dec_float_50 x);
+
+cpp_dec_float_50 cot_t(cpp_dec_float_50 x);
 
 #endif //TAREA1_GRUPO1_FUNCTIONS_H
