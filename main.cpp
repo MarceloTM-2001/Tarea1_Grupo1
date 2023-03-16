@@ -74,7 +74,7 @@ int main()
                 numeric_limits<cpp_dec_float_50>::digits10)
          << sin_t(h) << endl;
 
-    float i = pi_t;
+    float i = 2*pi_t;
     cout << "Cosecante: " << i << " = "
          << setprecision(
                 numeric_limits<cpp_dec_float_50>::digits10)

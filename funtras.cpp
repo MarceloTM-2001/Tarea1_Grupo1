@@ -75,6 +75,7 @@ cpp_dec_float_50 ln_t(cpp_dec_float_50 x)
     if (x <= 0)
     { // En caso de que la entrada del logaritmo sea negativa debe dar error (en este caso res -1)
         errorflag = true;
+        cout << "Logaritmo Indefinido" << endl;
         return -1;
     }
     cpp_dec_float_50 number = (x - 1) * divi_t(x + 1); // Para simplificar código se guarda el cálculo que se repite
@@ -115,6 +116,7 @@ cpp_dec_float_50 log_t(cpp_dec_float_50 x, cpp_dec_float_50 y)
     if (x <= 0 || y <= 0 || y==1)
     { // Casos donde el logaritmo se indefine
         errorflag = true;
+        cout << "Logaritmo indefinido" << endl;
         return -1;
     }
     else if (x == 1)
@@ -202,9 +204,10 @@ Se aproxima mediante la equivalencia con coseno.
 */
 cpp_dec_float_50 sec_t(cpp_dec_float_50 x)
 {
-    if ((x != 0) && (abs(fmod(x, pi_t/2)) < tol))
+    if (cos_t(x) < tol)
     { // Caso de error cuando cos se hace 0 se indefine el sec
         errorflag = true;
+        cout << "División por 0" << endl;
         return -1;
     }
     else
@@ -264,9 +267,10 @@ Se verifica mediante la equivalencia con seno
 */
 cpp_dec_float_50 csc_t(cpp_dec_float_50 x)
 {
-    if (abs(fmod(x, pi_t)) < tol)
+    if (sin_t(x) < tol)
     { // Caso de error cuando sen se hace 0 se indefine el csc
         errorflag = true;
+        cout << "División por 0" << endl;
         return -1;
     }
     else
@@ -376,10 +380,13 @@ cpp_dec_float_50 root_t(cpp_dec_float_50 x, cpp_dec_float_50 y)
     if ((check_even(cpp_int(y)) && (x < 0)) || (y == 0))
     {
         errorflag = true;
+        cout << "Root not defined" << endl;
         return -1;
     }
-    else
-    {
+    else if (y == (int)y && y == abs(y)){
+        return power_t(x, divi_t(y));
+        
+    } else {
         return root_t_aux(x, y);
     }
 }
@@ -445,6 +452,7 @@ cpp_dec_float_50 asin_t(cpp_dec_float_50 x)
     } else
     {
         errorflag = true;
+        cout << "Arcoseno indefinido" << endl;
         return -1;
     }
     
@@ -463,6 +471,7 @@ cpp_dec_float_50 acos_t(cpp_dec_float_50 x)
     } else
     {
         errorflag = true;
+        cout << "Arcocoseno indefinido" << endl;
         return -1;
     }
     
@@ -500,9 +509,11 @@ sk: suma en la k-esima posicion
 */
 cpp_dec_float_50 cot_t(cpp_dec_float_50 x)
 {
-    if (abs(fmod(x, pi_t)) < tol)
+
+    if (sin_t(x) < tol)
     { // Caso de error cuando sen se hace 0 se indefine el csc
         errorflag = true;
+        cout << "División por 0" << endl;
         return -1;
     }
     else
@@ -518,9 +529,10 @@ Se verifica mediante la equivalencia de seno entre coseno
 */
 cpp_dec_float_50 tan_t(cpp_dec_float_50 x)
 {
-    if ((x != 0) && (abs(fmod(x, pi_t/2)) < tol))
+    if (cos_t(x) < tol)
     { // Caso de error cuando cos se hace 0 se indefine tan
         errorflag = true;
+        cout << "División por 0" << endl;
         return 0;
     }
     else

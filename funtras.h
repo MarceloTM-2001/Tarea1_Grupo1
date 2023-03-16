@@ -9,6 +9,9 @@
 #include <string>
 #include "boost/multiprecision/cpp_dec_float.hpp"
 #include <boost/multiprecision/cpp_int.hpp>
+#include <boost/numeric/conversion/cast.hpp>
+
+
 using namespace boost::multiprecision;
 using namespace std;
 using boost::multiprecision::cpp_dec_float_50;
@@ -16,6 +19,7 @@ using boost::multiprecision::cpp_dec_float_50;
 const int iterMax = 2500;
 const double tol = 10e-8;
 const double pi_t = 3.14159265358979323846;
+const double e_t = 2.71828182845904523536;
 
 cpp_dec_float_50 divi_t(cpp_dec_float_50 x);
 
