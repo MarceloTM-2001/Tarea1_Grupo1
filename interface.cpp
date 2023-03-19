@@ -191,7 +191,7 @@ void MyFrame::OnButtonClicked(wxCommandEvent& event)
     errorflag = false;
     this->ansFuncEntry->Clear();
     cpp_dec_float_50 ans;
-
+    
     if (event.GetId()!=53 && event.GetId()!=63 && event.GetId()!=72 && event.GetId()!=100 && event.GetId()!=101){
         if (this->xFuncEntry->IsEmpty() == false)
         {
@@ -236,8 +236,12 @@ void MyFrame::OnButtonClicked(wxCommandEvent& event)
                 ans = factorial_t(numint);
             }
 
+            std::stringstream ss;
+            ss << std::setprecision(50) << ans;
+            wxString x_str = wxString::FromUTF8(ss.str());
+
             if (errorflag == false && ans == ans){
-                this->ansFuncEntry->WriteText(to_string(ans));
+                this->ansFuncEntry->WriteText(x_str);
             } else if (ans != ans) {
                 this->ansFuncEntry->WriteText("Sintax Error");
             } else {
@@ -274,8 +278,12 @@ void MyFrame::OnButtonClicked(wxCommandEvent& event)
                 ans = power_t(num, num1);
             }
 
+            std::stringstream ss;
+            ss << std::setprecision(50) << ans;
+            wxString x_str = wxString::FromUTF8(ss.str());
+
             if (errorflag == false && ans == ans){
-                this->ansFuncEntry->WriteText(to_string(ans));
+                this->ansFuncEntry->WriteText(x_str);
             } else if (ans != ans) {
                 this->ansFuncEntry->WriteText("Sintax Error");
             } else {

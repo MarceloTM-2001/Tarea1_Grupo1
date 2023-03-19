@@ -26,7 +26,12 @@ cpp_dec_float_50 divi_t(cpp_dec_float_50 x)
         sign *= -1;
     }
 
-    if (9.332622e+157 < x)
+    if (x == 0)
+    {
+        errorflag = true;
+        return -1;
+    }
+    else if (9.332622e+157 < x)
     { // El numero equivalente tendrá un resultado equivalente en máquina a 0
         return 0;
     }
@@ -204,7 +209,7 @@ Se aproxima mediante la equivalencia con coseno.
 */
 cpp_dec_float_50 sec_t(cpp_dec_float_50 x)
 {
-    if (cos_t(x) < tol)
+    if (abs(cos_t(x)) < tol)
     { // Caso de error cuando cos se hace 0 se indefine el sec
         errorflag = true;
         cout << "División por 0" << endl;
@@ -267,7 +272,7 @@ Se verifica mediante la equivalencia con seno
 */
 cpp_dec_float_50 csc_t(cpp_dec_float_50 x)
 {
-    if (sin_t(x) < tol)
+    if (abs(sin_t(x)) < tol)
     { // Caso de error cuando sen se hace 0 se indefine el csc
         errorflag = true;
         cout << "División por 0" << endl;
@@ -287,7 +292,21 @@ Se utilizan propiedades que invlocan funciones de euler y logaritmo natural
 */
 cpp_dec_float_50 power_t(cpp_dec_float_50 x, cpp_dec_float_50 y)
 {
-    return exp_t(y * ln_t(x));
+    if (y == (int)y && x < 0 && !check_even(cpp_int(abs(y)))){
+        return -exp_t(y * ln_t(abs(x)));
+
+    } else if (x == 0 && y != 0){
+        return 0;
+
+    } else if (x == 0 && y == 0){
+        errorflag = true;
+        return -1;
+        
+    } else {
+        return exp_t(y * ln_t(abs(x)));
+    }
+    
+    
 }
 
 /*
@@ -377,17 +396,33 @@ Se realiza la validación de los parámetros de entrada
 
 cpp_dec_float_50 root_t(cpp_dec_float_50 x, cpp_dec_float_50 y)
 {
-    if ((check_even(cpp_int(y)) && (x < 0)) || (y == 0))
+    if ((y == (int)y && check_even(cpp_int(abs(y))) && (x < 0)) || (y == 0))
     {
         errorflag = true;
         cout << "Root not defined" << endl;
         return -1;
-    }
-    else if (y == (int)y && y == abs(y)){
+    } else if (x == 0) {
+        return 0;
+
+    } else if (y == (int)y && y > 0 && !check_even(cpp_int(abs(y))) && x < 0){
+        cout << "Hecho por potencia" << endl;
+        return -power_t(x, divi_t(y));
+
+    } else if (y == (int)y && y > 0 ){
+        cout << "Hecho por potencia" << endl;
         return power_t(x, divi_t(y));
         
+    } else if (y == (int)y && y < 0 && !check_even(cpp_int(abs(y))) && x < 0){
+        cout << "Hecho por división " << abs(y) << endl;
+        return -divi_t(root_t_aux(abs(x), abs(y)));
+
+    } else if (y == (int)y && y < 0){
+        cout << "Hecho por división " << abs(y) << endl;
+        return divi_t(root_t_aux(abs(x), abs(y)));
+
     } else {
-        return root_t_aux(x, y);
+        cout << "Hecho por raiz" << endl;
+        return root_t_aux(abs(x), abs(y));
     }
 }
 
@@ -510,7 +545,7 @@ sk: suma en la k-esima posicion
 cpp_dec_float_50 cot_t(cpp_dec_float_50 x)
 {
 
-    if (sin_t(x) < tol)
+    if (abs(sin_t(x)) < tol)
     { // Caso de error cuando sen se hace 0 se indefine el csc
         errorflag = true;
         cout << "División por 0" << endl;
@@ -529,7 +564,7 @@ Se verifica mediante la equivalencia de seno entre coseno
 */
 cpp_dec_float_50 tan_t(cpp_dec_float_50 x)
 {
-    if (cos_t(x) < tol)
+    if (abs(cos_t(x)) < tol)
     { // Caso de error cuando cos se hace 0 se indefine tan
         errorflag = true;
         cout << "División por 0" << endl;
